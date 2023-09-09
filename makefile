@@ -8,14 +8,14 @@ prep:
 ifneq (,$(wildcard ./.p-$(CURRENT_TIME)))
 	@rm -rf lib
 	@rm -rf tests
-	@echo "prepped" > ./.p-$(CURRENT_TIME)
+	@echo "prepped $(CURRENT_TIME)" > ./.p-$(CURRENT_TIME)
 endif
 
 clean: prep
 ifneq (,$(wildcard ./.c-$(CURRENT_TIME)))
 	@find . -name "*.class" -type f -delete
 	@rm -rf $(COMPILE_DIR)
-	@echo "prepped" > ./.c-$(CURRENT_TIME)
+	@echo "cleaned $(CURRENT_TIME)" > ./.c-$(CURRENT_TIME)
 endif
 
 copy-files: prep clean
@@ -25,16 +25,15 @@ ifneq (,$(wildcard ./.f-$(CURRENT_TIME)))
 	@wget https://github.com/sfsu-csc-413-fall-2023/template-grader/blob/main/tests/assignment-1-tests.tar
 	@tar -xvf assignment-1-tests.tar
 	@rm assignment-1-tests.tar
-	@echo "prepped" > ./.f-$(CURRENT_TIME)
+	@echo "copied $(CURRENT_TIME)" > ./.f-$(CURRENT_TIME)
 endif
 
 all-tests: copy-files
 ifneq (,$(wildcard ./.compiled-$(CURRENT_TIME)))
-	@echo "Compiling for testing..."
 	@find . -name "*.java" > $(SOURCE_FILE)
 	@javac -d $(COMPILE_DIR) -cp $(COMPILE_DIR):$(JUNIT_JAR):. @$(SOURCE_FILE)
 	@rm $(SOURCE_FILE)
-	@echo "prepped" > ./.compiled-$(CURRENT_TIME)
+	@echo "compiled $(CURRENT_TIME)" > ./.compiled-$(CURRENT_TIME)
 endif
 
 test-method: all-tests
