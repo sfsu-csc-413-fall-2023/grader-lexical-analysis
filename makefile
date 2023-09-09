@@ -6,11 +6,12 @@ JUNIT_JAR=lib/junit-platform-console-standalone-1.9.3.jar
 prep:
 	@rm -rf lib
 	@rm -rf tests
-	@echo "-- Clean finished --"
+	@echo "-- prep finished --"
 
 clean:
 	@find . -name "*.class" -type f -delete
 	@rm -rf $(COMPILE_DIR)
+	@echo "-- clean finished --"
 
 copy-files: prep clean
 	@mkdir lib
