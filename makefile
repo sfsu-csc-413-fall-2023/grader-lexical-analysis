@@ -6,7 +6,6 @@ JUNIT_JAR=lib/junit-platform-console-standalone-1.9.3.jar
 prep:
 	@rm -rf lib
 	@rm -rf tests
-	@echo "prepped" > .prepped
 	@echo "-- prep finished --"
 
 clean:
