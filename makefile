@@ -45,8 +45,10 @@ endif
 all-tests: copy-files
 	@echo "-- all tests --"
 ifeq ("$(wildcard ./.compiled-$(TOKEN))","")
+	@javac -d $(COMPILE_DIR) lexer/tools/ToolRunner.java
+	@java -cp $(COMPILE_DIR) lexer.tools.ToolRunner
 	@find . -name "*.java" > $(SOURCE_FILE)
-	@javac -d $(COMPILE_DIR) -cp $(COMPILE_DIR):$(JUNIT_JAR):. @$(SOURCE_FILE)
+	@javac -d $(COMPILE_DIR) -cp $(COMPILE_DIR):lib/$(JUNIT_JAR):. @$(SOURCE_FILE)
 	@rm $(SOURCE_FILE)
 	@echo "compiled $(TOKEN)" > ./.compiled-$(TOKEN)
 else
@@ -54,5 +56,4 @@ else
 endif
 
 test-method: all-tests
-	@echo "Running $(FQ_METHOD_NAME)"
-	@java -jar $(JUNIT_JAR) -cp target -m $(FQ_METHOD_NAME)
+	@java -jar lib/$(JUNIT_JAR) -cp $(COMPILE_DIR) -m $(FQ_METHOD_NAME)
