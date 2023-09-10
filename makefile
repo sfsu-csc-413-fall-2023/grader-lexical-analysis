@@ -36,7 +36,7 @@ ifeq ("$(wildcard ./.f-$(TOKEN))","")
 	@tar -xvf $(TEST_TAR)
 	@echo "Just untarred"
 	ls tests/lexer
-	grep -n tests/lexer/LexerTest.java
+	grep -n testBuilt tests/lexer/LexerTest.java
 	@rm $(TEST_TAR)
 	@echo "copied $(TOKEN)" > ./.f-$(TOKEN)
 	@echo "Files copied"
