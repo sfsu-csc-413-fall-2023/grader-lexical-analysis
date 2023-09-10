@@ -33,7 +33,7 @@ ifeq ("$(wildcard ./.f-$(TOKEN))","")
 	@mkdir lib
 	@mv $(JUNIT_JAR) lib/$(JUNIT_JAR)
 	@wget -q $(ASSIGNMENT_GRADER)$(TEST_TAR)
-	@tar -xvf $(TEST_TAR)
+	@tar -xf $(TEST_TAR)
 	@rm $(TEST_TAR)
 	@echo "copied $(TOKEN)" > ./.f-$(TOKEN)
 	@echo "Files copied"
