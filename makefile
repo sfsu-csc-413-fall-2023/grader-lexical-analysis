@@ -26,7 +26,7 @@ ifeq ("$(wildcard ./.c-$(TOKEN))","")
 	@echo "Clean completed"
 endif
 
-copy-files: prep clean
+copy-files: clean
 ifeq ("$(wildcard ./.f-$(TOKEN))","")
 	@echo "Copying files..."
 	@wget -q $(ASSIGNMENT_GRADER)lib/$(JUNIT_JAR)
@@ -34,6 +34,9 @@ ifeq ("$(wildcard ./.f-$(TOKEN))","")
 	@mv $(JUNIT_JAR) lib/$(JUNIT_JAR)
 	@wget -q $(ASSIGNMENT_GRADER)$(TEST_TAR)
 	@tar -xvf $(TEST_TAR)
+	@echo "Just untarred"
+	ls tests/lexer
+	grep -n tests/lexer/LexerTest.java
 	@rm $(TEST_TAR)
 	@echo "copied $(TOKEN)" > ./.f-$(TOKEN)
 	@echo "Files copied"
