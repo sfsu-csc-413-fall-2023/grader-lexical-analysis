@@ -52,5 +52,4 @@ ifeq ("$(wildcard ./.compiled-$(TOKEN))","")
 endif
 
 test-method: all-tests
-	ls -R target/tests
 	java -jar lib/$(JUNIT_JAR) -cp $(COMPILE_DIR) -m $(FQ_METHOD_NAME)
