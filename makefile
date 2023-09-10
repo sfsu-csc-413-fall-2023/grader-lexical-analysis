@@ -33,7 +33,7 @@ ifeq ("$(wildcard ./.f-$(TOKEN))","")
 	@mkdir lib
 	@mv $(JUNIT_JAR) lib/$(JUNIT_JAR)
 	@wget -q $(ASSIGNMENT_GRADER)$(TEST_TAR)
-	@tar -xf $(TEST_TAR)
+	@tar -xvf $(TEST_TAR)
 	@rm $(TEST_TAR)
 	@echo "copied $(TOKEN)" > ./.f-$(TOKEN)
 	@echo "Files copied"
@@ -52,4 +52,5 @@ ifeq ("$(wildcard ./.compiled-$(TOKEN))","")
 endif
 
 test-method: all-tests
-	@java -jar lib/$(JUNIT_JAR) -cp $(COMPILE_DIR) -m $(FQ_METHOD_NAME)
+	ls -R target/tests
+	java -jar lib/$(JUNIT_JAR) -cp $(COMPILE_DIR) -m $(FQ_METHOD_NAME)
